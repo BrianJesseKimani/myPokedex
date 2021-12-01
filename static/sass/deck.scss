@@ -1,0 +1,200 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.canvas {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background: #DCDCDC;
+}
+
+.pokemon-card {
+    display: grid;
+    height: 660px;
+    width: 450px;
+    min-width: 450px;
+    border-radius: 15px;
+    border: 15px solid #e7c30d;
+    box-shadow: 10px 6px 10px 0px black;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    margin-bottom: 15px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../pokemon-pattern.jpg');
+        background-size: cover;
+        filter: blur(4px) grayscale(70%);
+        z-index: -1;
+    }
+}
+
+.title-row {
+    display: grid;
+    grid-template-areas: "rarity rarity rarity" "name health type";
+    grid-template-rows: auto 35px;
+    margin: 10px 10px 0px 10px;
+    align-items: center;
+    column-gap: 5px;
+    .rarity {
+        grid-area: rarity;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .name {
+        grid-area: name;
+    }
+    .health {
+        grid-area: health;
+        font-weight: bold;
+        font-size: 50px;
+        text-align: right;
+        color: rgb(168, 14, 14);
+    }
+    img {
+        display: block;
+        margin-left: auto;
+    }
+    .type {
+        grid-area: type;
+        align-items: right;
+        width: 100%;
+    }
+}
+
+.character-img {
+    margin: 5px 20px;
+    height: 250px;
+    border-bottom: 2px solid black;
+    overflow: hidden;
+    margin: auto;
+    img {
+        height: 100%;
+    }
+}
+
+.character-meta {
+    background-color: rgba(255, 255, 0, 0.4);
+    height: 25px;
+    margin: 0px 40px;
+    display: grid;
+    align-items: center;
+    p {
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+        font-style: italic;
+    }
+}
+
+.character-ability {
+    height: 75px;
+    display: grid;
+    grid-template-columns: 45px auto 65px;
+    gap: 5px;
+    align-items: center;
+    justify-items: center;
+    margin: 0 10px;
+    border-bottom: 2px solid black;
+    .ability-cost {
+        img {
+            width: 50px;
+        }
+    }
+    .ability-description {
+        text-align: center;
+        .ability-name {
+            font-weight: bold;
+            height: 16px;
+            float: left;
+        }
+        p {
+            &:before {
+                content: '\00a0';
+            }
+            img {
+                height: 18px;
+                vertical-align: middle;
+            }
+            text-align: left;
+        }
+    }
+    .ability-damage {
+        font-weight: bold;
+        font-size: 30px;
+    }
+}
+
+.character-stats {
+    height: 45px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    .character-stat {
+        display: grid;
+        justify-items: center;
+        grid-template-rows: 20px 25px;
+        // margin-bottom: 10px;
+        p {
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+}
+
+.character-description {
+    height: 40px;
+    margin: 0 20px;
+    border: 2px solid rgba(255, 255, 0, 0.4);
+    display: table;
+    align-items: center;
+    p {
+        font-style: italic;
+        font-size: 12px;
+        padding: 0 10px;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        display: table-cell;
+    }
+}
+
+.card-details {
+    height: 15px;
+    display: table;
+    font-size: 9px;
+    align-items: center;
+    margin: auto;
+    .collector-card-number {
+        text-align: center;
+        vertical-align: middle;
+        display: table-cell;
+        font-weight: bold;
+        text-align: right;
+        display: flex;
+        align-items: center;
+        &:after {
+            content: "⬤";
+            font-size: 9px;
+            line-height: 9px;
+            padding: 0 5px;
+        }
+    }
+}
+
+.element-icon {
+    height: 100%;
+}

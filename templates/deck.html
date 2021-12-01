@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='css/deck.scss.css') }}" rel="stylesheet" type="text/css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        {%for item in pokedata%}
+        <div class="canvas">
+            <div class="pokemon-card" id="poke-card">
+                <section class="title-row">
+                    <p class="rarity">{{item.types[0].type.name}}</p>
+                    <h1 class="name" id="poke-name">{{item.name}}</h1>
+                    <p class="health">{{item.id}}</p>
+
+                </section>
+
+                <section class="character-img">
+                    <img id="poke-image" src="{{item.sprites.other['official-artwork'].front_default}}" alt="">
+                </section>
+
+                <section class="character-meta">
+                    <p>{{item.name}} is so cute omg</p>
+                </section>
+
+                <section class="character-ability">
+                    <span class="ability-cost">
+                <img class="element-icon" src="static/pokemon-fire.png" alt="fire">
+            </span>
+                    <span class="ability-description">
+                <span class="ability-name">{{item.abilities[0].ability.name}}</span>
+                    </span>
+                    <p class="ability-damage">{{item.weight}}</p>
+                </section>
+
+                <section class="character-ability">
+                    <span class="ability-cost">
+             <img class="element-icon" src="static/pokemon-fire.png" alt=""></span>
+                    <span class="ability-description">
+                <span class="ability-name">{{item.abilities[0].ability.name}}</span>
+                    <p>Discard 1 <img class="element-icon" src="static/pokemon-fire.png" alt="" /> Energy card attached to {{item.name}}in order to use this attack</p>
+                    </span>
+                    <p class="ability-damage">30</p>
+                </section>
+
+                <section class="character-stats">
+                    <span class="character-stat">
+                <p>weakness</p>
+                <img class="element-icon" src="static/pokemon-fire.png" alt="">
+            </span>
+                    <span class="character-stat">
+				<p>resistance</p>
+			</span>
+                    <span class="character-stat">
+				<p>retreat cost</p>
+				<img class="element-icon" src="static/pokemon-fire.png">
+			</span>
+                </section>
+
+                <section class="character-description">
+                    <p>Obviously is the cutest</p>
+                </section>
+                <section class="card-details">
+                    <p class="collector-card-number">{{item.id}}300</p>
+                </section>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+
+</html>
