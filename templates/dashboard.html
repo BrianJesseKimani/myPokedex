@@ -38,29 +38,6 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Welcome, {{name}} !</h1>
 
-            <div class="row placeholders">
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="/static/pikachu-avatar.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Pikachu</h4>
-                    <span class="text-muted">Electricity</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="/static/squirtle-avatar.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Squirtle</h4>
-                    <span class="text-muted">Water</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="/static/venausar-avatar.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Venausar</h4>
-                    <span class="text-muted">Fire</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="/static/charmander-avatar.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Charmander</h4>
-                    <span class="text-muted">Grass</span>
-                </div>
-            </div>
-
             <h2 class="sub-header">Pokemon Collection</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -72,10 +49,12 @@
                     </thead>
                     <tbody>
                         {% for pokemon in my_pokemon %}
-                            <tr>
-                                <td>{{pokemon.id}},000</td>
-                                <td>{{pokemon.name}}</td>
-                            </tr>
+                        <tr>
+                            <td>{{pokemon.id}},000</td>
+                            <td>{{pokemon.name}}</td>
+
+                            <td><img id="poke-image " src="{{pokedata[pokemon.name|string()].sprites.other[ 'official-artwork'].front_default}} " alt=" "></td>
+                        </tr>
                         {% endfor%}
                     </tbody>
                 </table>

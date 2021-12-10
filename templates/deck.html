@@ -1,19 +1,10 @@
-{% extends "bootstrap/base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block title %} Dashboard {% endblock %}
-{% block styles %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="{{ url_for('static', filename='css/deck.scss.css') }}" rel="stylesheet" type="text/css">
-{% endblock %}
-{% block header %}
-
-{% endblock %}
-
-{% block content %}
+{% extends "bootstrap/base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block title %} Dashboard {% endblock %} {% block styles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="{{ url_for('static', filename='css/deck.scss.css') }}" rel="stylesheet" type="text/css"> {% endblock %} {% block header %} {% endblock %} {% block content %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{{ url_for('dashboard') }}">MyPokedex</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -26,8 +17,7 @@
                 <a class="nav-link" href="{{ url_for('dashboard') }}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Exit
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -46,186 +36,175 @@
 
 
 <div class="d-flex flex-row">
-    <div class="w-25"">
-            <ul class=" nav nav-tabs nav-pills flex-column">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('dashboard') }}">MyDashBoard</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Find Pokemon</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Buy Coins</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="#">Lets Trade!</a>
-        </li>
+    <div class="w-25">
+        <ul class=" nav nav-tabs nav-pills flex-column ">
+            <li class="nav-item ">
+                <a class="nav-link " href="{{ url_for( 'dashboard') }} ">MyDashBoard</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link active " href="# ">Find Pokemon</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="# ">Buy Coins</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link disabled " href="# ">Lets Trade!</a>
+            </li>
         </ul>
     </div>
-    <div class="container-fluid canvas">
-        <div class="row">
-            <div class="d-flex align-items-center">
-                <form class="form-signin" method="POST" action="/dashboard">
+    <div class="container-fluid canvas ">
+        <div class="row ">
+            <div class="d-flex align-items-center ">
+                <form class="form-signin " method="POST " action="/dashboard ">
                     {{ buyform.hidden_tag() }}
                     <h5>{{ wtf.form_field(buyform.pokemon_name) }}</h5>
-                    {{ buyform.submit1(class="btn btn-lg btn-primary btn-block") }}
-                    <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">BUY!</button> -->
+                    {{ buyform.submit1(class="btn btn-lg btn-primary btn-block ") }}
+                    <!-- <button class="btn btn-lg btn-primary btn-block " type="submit ">BUY!</button> -->
                 </form>
-            </div>  
-            <div id="pokemon-carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    {%for item in pokedata[:1]%}
-                    <div class="carousel-item active">
-                        <div class="pokemon-card" id="poke-card">
-                            <section class="title-row">
-                                <p class="rarity">{{item.types[0].type.name}}</p>
-                                <h1 class="name" id="poke-name">{{item.name}}</h1>
-                                <p class="health">{{item.id}}</p>
+            </div>
+            <div id="pokemon-carousel " class="carousel slide " data-ride="carousel ">
+                <div class="carousel-inner ">
+                    {%for key, item in pokedata.items()%}
+                    <div class="carousel-item active ">
+                        <div class="pokemon-card " id="poke-card ">
+                            <section class="title-row ">
+                                <p class="rarity ">{{item.types[0].type.name}}</p>
+                                <h1 class="name " id="poke-name ">{{item.name}}</h1>
+                                <p class="health ">{{item.id}}</p>
                             </section>
 
-                            <section class="character-img">
-                                <img id="poke-image" src="{{item.sprites.other['official-artwork'].front_default}}"
-                                    alt="">
+                            <section class="character-img ">
+                                <img id="poke-image " src="{{item.sprites.other[ 'official-artwork'].front_default}} " alt=" ">
                             </section>
 
-                            <section class="character-meta">
+                            <section class="character-meta ">
                                 <p>{{item.name}} is so cute omg</p>
                             </section>
 
-                            <section class="character-ability">
-                                <span class="ability-cost">
-                                    <img class="element-icon" src="static/pokemon-fire.png" alt="fire">
+                            <section class="character-ability ">
+                                <span class="ability-cost ">
+                                    <img class="element-icon " src="static/pokemon-fire.png " alt="fire ">
                                 </span>
-                                <span class="ability-description">
-                                    <span class="ability-name">{{item.abilities[0].ability.name}}</span>
+                                <span class="ability-description ">
+                                    <span class="ability-name ">{{item.abilities[0].ability.name}}</span>
                                 </span>
-                                <p class="ability-damage">{{item.weight}}</p>
+                                <p class="ability-damage ">{{item.weight}}</p>
                             </section>
 
-                            <section class="character-ability">
-                                <span class="ability-cost">
-                                    <img class="element-icon" src="static/pokemon-fire.png" alt=""></span>
-                                <span class="ability-description">
-                                    <span class="ability-name">{{item.abilities[0].ability.name}}</span>
-                                    <p>Discard 1 <img class="element-icon" src="static/pokemon-fire.png" alt="" />
-                                        Energy card attached to {{item.name}}in order to use this attack</p>
+                            <section class="character-ability ">
+                                <span class="ability-cost ">
+                                    <img class="element-icon " src="static/pokemon-fire.png " alt=" "></span>
+                                <span class="ability-description ">
+                                    <span class="ability-name ">{{item.abilities[0].ability.name}}</span>
+                                <p>Discard 1 <img class="element-icon " src="static/pokemon-fire.png " alt=" " /> Energy card attached to {{item.name}}in order to use this attack</p>
                                 </span>
-                                <p class="ability-damage">30</p>
+                                <p class="ability-damage ">30</p>
                             </section>
 
-                            <section class="character-stats">
-                                <span class="character-stat">
+                            <section class="character-stats ">
+                                <span class="character-stat ">
                                     <p>weakness</p>
-                                    <img class="element-icon" src="static/pokemon-fire.png" alt="">
+                                    <img class="element-icon " src="static/pokemon-fire.png " alt=" ">
                                 </span>
-                                <span class="character-stat">
+                                <span class="character-stat ">
                                     <p>resistance</p>
                                 </span>
-                                <span class="character-stat">
+                                <span class="character-stat ">
                                     <p>retreat cost</p>
-                                    <img class="element-icon" src="static/pokemon-fire.png">
+                                    <img class="element-icon " src="static/pokemon-fire.png ">
                                 </span>
                             </section>
 
-                            <section class="character-description">
+                            <section class="character-description ">
                                 <p>Obviously is the cutest</p>
                             </section>
-                            <section class="card-details">
-                                <p class="collector-card-number">{{item.id}}300</p>
+                            <section class="card-details ">
+                                <p class="collector-card-number ">{{item.id}}300</p>
                             </section>
                         </div>
                     </div>
-                    {% endfor %}
-                    {%for item in pokedata[1:]%}
-                    <div class="carousel-item">
-                        <div class="pokemon-card" id="poke-card">
-                            <section class="title-row">
-                                <p class="rarity">{{item.types[0].type.name}}</p>
-                                <h1 class="name" id="poke-name">{{item.name}}</h1>
-                                <p class="health">{{item.id}}</p>
+                    {% endfor %} {%for key, item in pokedata.items()%}
+                    <div class="carousel-item ">
+                        <div class="pokemon-card " id="poke-card ">
+                            <section class="title-row ">
+                                <p class="rarity ">{{item.types[0].type.name}}</p>
+                                <h1 class="name " id="poke-name ">{{item.name}}</h1>
+                                <p class="health ">{{item.id}}</p>
                             </section>
 
-                            <section class="character-img">
-                                <img id="poke-image" src="{{item.sprites.other['official-artwork'].front_default}}"
-                                    alt="">
+                            <section class="character-img ">
+                                <img id="poke-image " src="{{item.sprites.other[ 'official-artwork'].front_default}} " alt=" ">
                             </section>
 
-                            <section class="character-meta">
+                            <section class="character-meta ">
                                 <p>{{item.name}} is so cute omg</p>
                             </section>
 
-                            <section class="character-ability">
-                                <span class="ability-cost">
-                                    <img class="element-icon" src="static/pokemon-fire.png" alt="fire">
+                            <section class="character-ability ">
+                                <span class="ability-cost ">
+                                    <img class="element-icon " src="static/pokemon-fire.png " alt="fire ">
                                 </span>
-                                <span class="ability-description">
-                                    <span class="ability-name">{{item.abilities[0].ability.name}}</span>
+                                <span class="ability-description ">
+                                    <span class="ability-name ">{{item.abilities[0].ability.name}}</span>
                                 </span>
-                                <p class="ability-damage">{{item.weight}}</p>
+                                <p class="ability-damage ">{{item.weight}}</p>
                             </section>
 
-                            <section class="character-ability">
-                                <span class="ability-cost">
-                                    <img class="element-icon" src="static/pokemon-fire.png" alt=""></span>
-                                <span class="ability-description">
-                                    <span class="ability-name">{{item.abilities[0].ability.name}}</span>
-                                    <p>Discard 1 <img class="element-icon" src="static/pokemon-fire.png" alt="" />
-                                        Energy card attached to {{item.name}}in order to use this attack</p>
+                            <section class="character-ability ">
+                                <span class="ability-cost ">
+                                    <img class="element-icon " src="static/pokemon-fire.png " alt=" "></span>
+                                <span class="ability-description ">
+                                    <span class="ability-name ">{{item.abilities[0].ability.name}}</span>
+                                <p>Discard 1 <img class="element-icon " src="static/pokemon-fire.png " alt=" " /> Energy card attached to {{item.name}}in order to use this attack</p>
                                 </span>
-                                <p class="ability-damage">30</p>
+                                <p class="ability-damage ">30</p>
                             </section>
 
-                            <section class="character-stats">
-                                <span class="character-stat">
+                            <section class="character-stats ">
+                                <span class="character-stat ">
                                     <p>weakness</p>
-                                    <img class="element-icon" src="static/pokemon-fire.png" alt="">
+                                    <img class="element-icon " src="static/pokemon-fire.png " alt=" ">
                                 </span>
-                                <span class="character-stat">
+                                <span class="character-stat ">
                                     <p>resistance</p>
                                 </span>
-                                <span class="character-stat">
+                                <span class="character-stat ">
                                     <p>retreat cost</p>
-                                    <img class="element-icon" src="static/pokemon-fire.png">
+                                    <img class="element-icon " src="static/pokemon-fire.png ">
                                 </span>
                             </section>
 
-                            <section class="character-description">
+                            <section class="character-description ">
                                 <p>Obviously is the cutest</p>
                             </section>
-                            <section class="card-details">
-                                <p class="collector-card-number">{{item.id}}300</p>
+                            <section class="card-details ">
+                                <p class="collector-card-number ">{{item.id}}300</p>
                             </section>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
-                <a class="carousel-control-prev" href="#pokemon-carousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                <a class="carousel-control-prev " href="#pokemon-carousel " role="button " data-slide="prev ">
+                    <span class="carousel-control-prev-icon " aria-hidden="true "></span>
+                    <span class="sr-only ">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#pokemon-carousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                <a class="carousel-control-next " href="#pokemon-carousel " role="button " data-slide="next ">
+                    <span class="carousel-control-next-icon " aria-hidden="true "></span>
+                    <span class="sr-only ">Next</span>
                 </a>
             </div>
-            <div class="d-flex align-items-center">
-                <form class="form-signin" method="POST" action="/dashboard">
+            <div class="d-flex align-items-center ">
+                <form class="form-signin " method="POST " action="/dashboard ">
                     {{ sellform.hidden_tag() }}
                     <h5>{{ wtf.form_field(sellform.pokemon_name) }}</h5>
-                    {{sellform.submit2(class="btn btn-lg btn-primary btn-block")}}    
-                    <!-- <button class="btn btn-lg btn-primary btn-block" type="submit"></button> -->
+                    {{sellform.submit2(class="btn btn-lg btn-primary btn-block ")}}
+                    <!-- <button class="btn btn-lg btn-primary btn-block " type="submit "></button> -->
                 </form>
-            </div>  
+            </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
 {% endblock %}

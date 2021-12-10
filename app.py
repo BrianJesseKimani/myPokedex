@@ -31,16 +31,22 @@ login_manager.login_view = 'login'
 app.wsgi_app = SassMiddleware(app.wsgi_app, {
     'app': ('static/sass', 'static/css', '/static/css')
 })
-arr = []
+arr = {}
 response = requests.get("https://pokeapi.co/api/v2/pokemon?limit=3")
 response_json = response.json()
 resp_array = response_json['results']
+
+# for i in resp_array:
+#     response = requests.get(i['url'])
+#     res = response.json()
+#     arr.append(res)
+
+
 for i in resp_array:
     response = requests.get(i['url'])
     res = response.json()
-    arr.append(res)
+    arr[res['name']] = response.json()
 
-#print(arr[1]['forms'][0]['name'])
 
 
 
@@ -155,7 +161,7 @@ def dashboard():
         
 
         
-    return render_template('dashboard.html', name = current_user.username, coins = current_user.coins, my_pokemon = all_user_pokemon)
+    return render_template('dashboard.html', name = current_user.username, coins = current_user.coins, my_pokemon = all_user_pokemon, pokedata=arr)
 
 @app.route('/deck')
 @login_required
